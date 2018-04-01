@@ -1,0 +1,22 @@
+<h3>Booking info</h3>
+
+<%= form_tag(doctor_patients_path, method: "post") do %>
+		<div class="form-group col-md-10">
+			<div class="control-label">
+			  <%= label_tag :doctor_Name %>
+			</div>
+			<%= text_field_tag :doc_name, @doctor.name, :readonly => true, class: "form-control"%>
+		</div>
+		<div class="form-group col-md-10">
+		<div class="control-label">
+			<%= label_tag :date %>
+			</div>
+      <%= text_field_tag :booking_date, params[:booking_date], class: "form-control datepicker"%>		
+		</div>
+    <div class="col-md-10">	
+      <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
+        <i class="fa fa-search"></i> Book
+      <% end %>
+    </div>
+  </div>
+<% end %> 
