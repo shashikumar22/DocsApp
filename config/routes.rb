@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get 'list_patient', to: 'doctors#list_patient'
   resources :doctor_patients
   resources :patients, only: [:show]
+   resources :doctors, only: [:show]
 end
