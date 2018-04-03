@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328115113) do
+ActiveRecord::Schema.define(version: 20180402131455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20180328115113) do
     t.date "booking_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "test"
     t.index ["doctor_id"], name: "index_doctor_patients_on_doctor_id"
     t.index ["patient_id"], name: "index_doctor_patients_on_patient_id"
   end
@@ -44,6 +45,20 @@ ActiveRecord::Schema.define(version: 20180328115113) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "first_name"
+    t.string "last_name"
+    t.index ["email"], name: "index_doctors_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
   end
 
   create_table "patients", force: :cascade do |t|
@@ -63,7 +78,7 @@ ActiveRecord::Schema.define(version: 20180328115113) do
     t.string "last_name"
     t.string "address"
     t.string "phone_no"
-    t.string "age"
+    t.integer "age"
     t.index ["email"], name: "index_patients_on_email", unique: true
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end

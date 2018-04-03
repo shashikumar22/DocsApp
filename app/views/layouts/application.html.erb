@@ -39,6 +39,19 @@
             </li>
           </ul>
           </div>
+        <% end %>
+         <% if current_doctor %>
+          <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+              <li><%= link_to "Patients", list_patient_path %></li>
+            </ul>
+            <ul class="nav navbar-right">
+            <li class="logout">
+              <%= link_to("logout", destroy_doctor_session_path,
+                                  class: "btn btn-xs btn-danger", method: :delete) %>
+            </li>
+          </ul>
+          </div>
         <% end %>  
       </div>
     </div>

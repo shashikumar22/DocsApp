@@ -23,3 +23,14 @@
 .logout:hover{
 	background-color: none
 }
+
+.form-margin{
+	margin-left: -15px !important;
+}
+
+.date-form{
+	position: relative;
+  margin-left: 67%;
+  margin-bottom: -32px;
+}
+    

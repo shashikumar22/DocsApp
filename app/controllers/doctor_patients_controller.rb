@@ -5,7 +5,7 @@ class DoctorPatientsController < ApplicationController
   end	
 
 	def create
-    @doctor = Doctor.find_by(name: params[:doc_name])
+    @doctor = Doctor.find_by(first_name: params[:doc_name])
     if params[:booking_date].blank?
       flash.now[:danger] = "please select a date"
       render 'new'
@@ -21,8 +21,10 @@ class DoctorPatientsController < ApplicationController
 	end
 
   def edit
+    byebug
     @doctor_patient = DoctorPatient.find(params[:id])
     @doctor = Doctor.find(@doctor_patient[:doctor_id])
+    booked_date = DoctorPatient.where(:doctor_id => @doctor.id).map(&:booking_date);
   end
 
   def update

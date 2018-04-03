@@ -1,17 +1,9 @@
-<%= form_tag '#' do %>
-		<div class="form-group col-md-">
-		<div class="control-label">
-			<%= label_tag :date %>
-			</div>
-      <%= text_field_tag :booking_date,params[:booking_date], class: "form-control datepicker"%>		
-		</div>
-    <div class="col-md-10">	
-      <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
-        <i class="fa fa-search"></i> Update
+<%= form_tag({controller: "patients", action: "available_doctors"}, method: "get",class: "date-form") do %>
+      <%= text_field_tag :booking_date,params[:booking_date], class:"datepicker	"%>	
+      <%= button_tag(type: :submit) do %>
+        <i class="fa fa-search"></i> Change Date
       <% end %>
-    </div>
-  </div>
-<% end %> 
+<% end %>
 
 <table class="table table-stripped">
 	<thead>
@@ -26,8 +18,8 @@
 	<tbody>
 		<% @doctors.each do |doctor| %>
 			<tr>
-				<td><%= link_to doctor.name, doctor_path(doctor.id) %></td>
-				<td><%= link_to 'Book', new_doctor_patient_path(patient: current_patient,doctor: doctor.id) ,       	 class: "btn btn-xs btn-success"%></td>
+				<td><%= link_to doctor.first_name, doctor_path(doctor.id) %></td>
+				<td><%= link_to 'Book', new_doctor_patient_path(patient: current_patient,doctor: doctor.id, booking_date: params[:booking_date]), class: "btn btn-xs btn-success"%></td>
 			</tr>
 		<% end %>
 	</tbody>
