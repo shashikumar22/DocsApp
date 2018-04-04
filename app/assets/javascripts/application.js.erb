@@ -16,8 +16,18 @@
 //= require turbolinks
 //= require_tree .
 $(document).on('turbolinks:load', function() {
+	var disabledDates = []
+	if(gon != undefined){
+	disabledDates = gon.disabled_dates
+	}
  $('.datepicker').datepicker({
- 		dateFormat: "yy-mm-dd"
+ 		dateFormat: "yy-mm-dd",
+ 		beforeShowDay: function(date){
+        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+        if(disabledDates == undefined){
+        	disabledDates = []
+        }
+        return [ disabledDates.indexOf(string) == -1 ]
+    }
  });
-})
-
+}); 

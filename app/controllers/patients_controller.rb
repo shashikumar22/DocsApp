@@ -8,7 +8,7 @@ class PatientsController < ApplicationController
     else
     	params[:booking_date] = Date.parse(params[:booking_date])	
     end
-		@booked_doctor_ids = @doctor_patients.select{|c|  c.booking_date == params[:booking_date] }.map(&:doctor_id)
+		@booked_doctor_ids = @doctor_patients.where(booking_date: params[:booking_date]).map(&:doctor_id)
 		if @booked_doctor_ids.count > 0
 			@doctors = @doctors.where("id not in (?)", @booked_doctor_ids)
 		end	

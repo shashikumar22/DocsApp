@@ -21,10 +21,10 @@ class DoctorPatientsController < ApplicationController
 	end
 
   def edit
-    byebug
     @doctor_patient = DoctorPatient.find(params[:id])
     @doctor = Doctor.find(@doctor_patient[:doctor_id])
-    booked_date = DoctorPatient.where(:doctor_id => @doctor.id).map(&:booking_date);
+    booked_date = DoctorPatient.where(:doctor_id => @doctor.id).map(&:booking_date)
+    gon.disabled_dates = booked_date
   end
 
   def update

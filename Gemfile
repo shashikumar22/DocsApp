@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'delayed_job_active_record'
 gem "letter_opener", :group => :development
+gem "gon"
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
