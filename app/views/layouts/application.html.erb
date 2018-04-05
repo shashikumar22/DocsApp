@@ -25,12 +25,16 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">DocsApp</a>
+        <!-- <a class="navbar-brand" href="#">DocsApp</a> -->
+        <% if current_patient %>
+          <%= link_to "DocsApp", bookings_path, class:"navbar-brand" %>
+        <% elsif current_doctor %>
+          <%= link_to "DocsApp", list_patient_path, class:"navbar-brand" %>
+        <% end %>  
         <% if current_patient %>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
               <li><%= link_to "Doctors", available_doctors_path %></li>
-              <li><%= link_to "Bookings", bookings_path  %></li>
             </ul>
             <ul class="nav navbar-right">
             <li class="logout">
@@ -42,9 +46,6 @@
         <% end %>
          <% if current_doctor %>
           <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
-              <li><%= link_to "Patients", list_patient_path %></li>
-            </ul>
             <ul class="nav navbar-right">
             <li class="logout">
               <%= link_to("logout", destroy_doctor_session_path,

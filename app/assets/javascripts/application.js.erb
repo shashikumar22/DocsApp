@@ -17,10 +17,8 @@
 //= require_tree .
 $(document).on('turbolinks:load', function() {
 	var disabledDates = []
-	if(gon != undefined){
-	disabledDates = gon.disabled_dates
-	}
- $('.datepicker').datepicker({
+	if(gon != undefined) disabledDates = gon.disabled_dates
+  $('.datepicker').datepicker({
  		dateFormat: "yy-mm-dd",
  		beforeShowDay: function(date){
         var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
@@ -29,5 +27,15 @@ $(document).on('turbolinks:load', function() {
         }
         return [ disabledDates.indexOf(string) == -1 ]
     }
- });
+  });
+  $('.get_available_doctors').change(function() {
+    var date = $('.get_available_doctors').val()
+    $(this).data("ameena")
+    $.ajax({
+      type: 'GET',
+      url: "available_doctors",
+      data: {booking_date: date},
+      dataType: 'script'
+    });
+  });
 }); 

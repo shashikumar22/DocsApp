@@ -1,0 +1,19 @@
+<table class="table table-stripped">
+	<thead>
+		<tr>
+			<th>Doctors Available</th>
+		</tr>
+    <tr>
+    	<th>Name</th>
+    	<th>Actions</th>
+    </tr>
+	</thead>
+	<tbody>
+		<% @doctors.each do |doctor| %>
+			<tr>
+				<td><%= link_to doctor.first_name, doctor_path(doctor.id) %></td>
+				<td><%= link_to 'Book', new_doctor_patient_path(patient: current_patient, doctor: doctor.id, booking_date: params[:booking_date]), class: "btn btn-xs btn-success"%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

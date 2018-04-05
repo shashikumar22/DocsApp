@@ -30,7 +30,11 @@
 
 .date-form{
 	position: relative;
-  margin-left: 67%;
-  margin-bottom: -32px;
+  margin-left: 61%;
+  /*margin-bottom: -32px;*/
+}
+
+.form-last-name{
+	width: 104% !important
 }
     

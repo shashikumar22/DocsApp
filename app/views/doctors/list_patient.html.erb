@@ -5,10 +5,11 @@
 		<th>Patient Name</th>
 		<th>Appointment Date</th>
 	</thead>
-	<% @patients.each do |patient| %>
+
+	<% @patients.each do |doctor_patient| %>
 		<tr>
-			<td><%= link_to patient["patient_name"], patient_path(patient["patient_id"]) %></td>
-			<td><%= patient["booking_date"] %></td>
+			<td><%= link_to doctor_patient.patient.first_name, patient_path(doctor_patient.patient.id) %></td>
+			<td><%= doctor_patient.booking_date %></td>
 		</tr>
 	<% end %>
 </table>

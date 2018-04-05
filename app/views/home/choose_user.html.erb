@@ -1,6 +1,9 @@
-<h1>choose User Type</h1>
+<% if !current_patient &&  !current_doctor %>
+
+	<h1>choose User Type</h1>
 
 
-<%= link_to 'Doctor', new_doctor_session_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to 'Doctor', new_doctor_session_path, class: "btn btn-lg btn-primary" %>
 
-<%= link_to 'Patient', new_patient_session_path, class: "btn btn-lg btn-primary" %>
+	<%= link_to 'Patient', new_patient_session_path, class: "btn btn-lg btn-primary" %>
+<% end %>	

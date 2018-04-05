@@ -1,26 +1,4 @@
-<%= form_tag({controller: "patients", action: "available_doctors"}, method: "get",class: "date-form") do %>
-      <%= text_field_tag :booking_date,params[:booking_date], class:"datepicker	"%>	
-      <%= button_tag(type: :submit) do %>
-        <i class="fa fa-search"></i> Change Date
-      <% end %>
-<% end %>
-
-<table class="table table-stripped">
-	<thead>
-		<tr>
-			<th>Doctors Available</th>
-		</tr>
-    <tr>
-    	<th>Name</th>
-    	<th>Actions</th>
-    </tr>
-	</thead>
-	<tbody>
-		<% @doctors.each do |doctor| %>
-			<tr>
-				<td><%= link_to doctor.first_name, doctor_path(doctor.id) %></td>
-				<td><%= link_to 'Book', new_doctor_patient_path(patient: current_patient,doctor: doctor.id, booking_date: params[:booking_date]), class: "btn btn-xs btn-success"%></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
+<%= text_field_tag :booking_date,params[:booking_date], class:"datepicker get_available_doctors date-form" %>
+<div id="results">
+  <%= render 'result' %>
+</div>
