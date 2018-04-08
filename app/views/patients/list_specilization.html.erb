@@ -1,0 +1,28 @@
+<%= form_tag(available_doctors_path, method: "get") do %>
+  <div class="row">
+		<div class="form-group col-md-4">
+			<div class="control-label">
+			  <%= label_tag :specilization %>
+			</div>
+			<%= select_tag "specilization", options_for_select(@specilizations.map {|specilization| specilization }), class: "form-control"%>
+	  </div>
+	</div>
+
+  <div class="row">
+		<div class="form-group col-md-4">
+			<div class="control-label">
+			  <%= label_tag :booking_date %>
+			</div>
+			    <%= text_field_tag :booking_date, params[:booking_date], class: "form-control datepicker"%>	
+	  </div>
+	</div>
+
+  <div class="row">
+    <div class="col-md-4">	
+      <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
+        <i class="fa fa-search"></i> Find
+      <% end %>
+    </div>
+  </div>
+  </div>
+<% end %> 

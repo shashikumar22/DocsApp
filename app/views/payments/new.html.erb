@@ -1,0 +1,44 @@
+<h1>Payments</h1>
+
+<div class="container">
+<!-- 	<div class="row">
+		<div class="col-sm-4"><strong>Doctor Name: </strong></div>
+		<div class="col-sm-4"><%= @doctor.first_name %></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4"><strong>Patient Name: </strong></div>
+		<div class="col-sm-4"><%= current_patient.first_name %></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4"><strong>total: </strong></div>
+		<div class="col-sm-4"><%=  @doctor.fees %></div>
+	</div> -->
+</div>
+
+<%= form_tag(payments_path, method: "post") do %>
+  <div class="row margin-top-15">
+		<div class="col-sm-4"><strong>Doctor Name: </strong></div>
+		<div class="col-sm-4"><%= text_field_tag :doctor_name, @doctor.first_name, :readonly => true %></div>
+	</div>
+
+		<div class="row margin-top-15">
+		<div class="col-sm-4"><strong>Patient Name: </strong></div>
+		<div class="col-sm-4"><%= text_field_tag :booking_date, params[:booking_date] , :readonly => true %></div>
+	</div>
+	<div class="row margin-top-15">
+		<div class="col-sm-4"><strong>total: </strong></div>
+		<div class="col-sm-4 margin-top-15"><%= text_field_tag :doctor_fees, @doctor.fees, :readonly => true %></div>
+	</div>
+  <div class="row margin-top-15">
+		<div class="col-sm-4"><strong>Amount: </strong></div>
+		<div class="col-sm-4 margin-top-15"><%= text_field_tag :amt, params[:amt] %></div>
+	</div>
+  <div class="row margin-top-15	">
+    <div class="col-md-4 padding-right">	
+      <%= button_tag(type: :submit, class: "btn btn-lg btn-success") do %>
+        <i class="fa fa-search"></i> Pay
+      <% end %>
+    </div>
+  </div>
+  </div>
+<% end %> 

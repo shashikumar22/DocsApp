@@ -1,6 +1,11 @@
 class PatientsController < ApplicationController
 
-	def available_doctors
+  def list_specilization
+  	@specilizations = Doctor.all.map(&:specilization).join(",").split(",").flatten
+  	params[:booking_date] = Date.today
+  end
+
+  def available_doctors
 		@doctors = Doctor.all
 		if !params[:booking_date].present?
     	params[:booking_date] = Date.today
@@ -9,9 +14,11 @@ class PatientsController < ApplicationController
     end
 		@booked_doctor_ids = DoctorPatient.where(booking_date: params[:booking_date]).map(&:doctor_id)
 		if @booked_doctor_ids.count > 0
-			@doctors = @doctors.where("id not in (?)", @booked_doctor_ids)
+  	  byebug
+  	  # @doctors.where("lower(specilization) like lower(?)", "%#{params[:specilization]}%")
+			@doctors = @doctors.where("id not in (?) and lower(specilization) like lower(?)", @booked_doctor_ids, params[:specilizations])
 		else
-			@doctors
+			@doctors = @doctors.where("lower(specilization) like lower(?)", "%#{params[:specilization]}%")	
 		end
 
 		respond_to do |format|

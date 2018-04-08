@@ -3,27 +3,22 @@ class DoctorPatientsController < ApplicationController
   before_action :set_doctor_patient, only: [:edit, :update, :destroy]
 
   def new
-  	@doctor = Doctor.find(params[:doctor])
+    @doctor = Doctor.find(params[:doctor])
     booked_date = @doctor.doctor_patients.map(&:booking_date)
     gon.disabled_dates = booked_date
     @doctor_patient  = DoctorPatient.new
-  end	
+  end 
 
-	def create
+  def create
     @doctor = Doctor.find_by(first_name: params[:doc_name])
-    if params[:booking_date].blank?
-      flash.now[:danger] = "please select a date"
-      render 'new'
-    else 
-      @doctor_patient = DoctorPatient.new(patient_id: current_patient.id, doctor_id: @doctor.id, 
-                        booking_date: Date.parse(params[:booking_date]))
-      if @doctor_patient.save
-        flash[:success] = "you have successfully booked Dr.#{@doctor.first_name} on #{params[:booking_date]}
-                           for consultation"
-        redirect_to bookings_path                     
-      end
+    @doctor_patient = DoctorPatient.new(patient_id: current_patient.id, doctor_id: @doctor.id, 
+                      booking_date: Date.parse(params[:booking_date]))
+    if @doctor_patient.save
+      flash[:success] = "you have successfully booked Dr.#{@doctor.first_name} on #{params[:booking_date]}
+                         for consultation"
+      redirect_to bookings_path                     
     end                         
-	end
+  end
 
   def edit
     # @doctor_patient = DoctorPatient.find(params[:id])
